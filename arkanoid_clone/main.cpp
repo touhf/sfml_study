@@ -6,11 +6,14 @@ using namespace sf;
 
 // constexpr - immutable compile-time value
 constexpr int windowWidth {800}, windowHeight {600};
-constexpr float ballRadius {10.f};
+constexpr float ballRadius {10.f}, ballVelocity {8.f};
 
 struct Ball
 {
     CircleShape shape;
+
+    // 2d vector that stores the Ball's velocity
+    Vector2f velocity {-ballVelocity, -ballVelocity};
 
     Ball(float mX, float mY)
     {
@@ -19,6 +22,8 @@ struct Ball
         shape.setFillColor(Color::Red);
         shape.setOrigin(ballRadius, ballRadius);
     }
+
+    void update() { shape.move(velocity); };
 };
 
 int main()
@@ -34,6 +39,9 @@ int main()
         window.clear(Color::Black);
 
         if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) break;
+
+        // every loop we need to update ball
+        ball.update();
 
         window.draw(ball.shape);
         // show the window contents
