@@ -50,18 +50,18 @@ int main()
 
     Ball ball{windowWidth/2, windowHeight/2};
 
-    while (true)
+    while (window.isOpen())
     {
+        Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == Event::Closed)
+                window.close();
+        }
         // clear window from previously drawn graphics
         window.clear(Color::Black);
-
-        if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) break;
-
-        // every loop we need to update ball
         ball.update();
-
         window.draw(ball.shape);
-        // show the window contents
         window.display();
     }
 }
