@@ -23,7 +23,24 @@ struct Ball
         shape.setOrigin(ballRadius, ballRadius);
     }
 
-    void update() { shape.move(velocity); };
+    void update() 
+    { 
+        shape.move(velocity); 
+
+        // keeping ball inside the screen
+        if (left() < 0) velocity.x = ballVelocity;
+        else if (right() > windowWidth) velocity.x = -ballVelocity;
+        
+        if (top() < 0) velocity.y = ballVelocity;
+        else if (bottom() > windowHeight) velocity.y = -ballVelocity;
+    }
+
+    float x() { return shape.getPosition().x; }
+    float y() { return shape.getPosition().y; }
+    float left()   { return x() - shape.getRadius(); }
+    float right()  { return x() + shape.getRadius(); }
+    float top()    { return y() - shape.getRadius(); }
+    float bottom() { return y() + shape.getRadius(); }
 };
 
 int main()
