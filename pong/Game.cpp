@@ -29,18 +29,21 @@ void Game::GameLoop()
     sf::Event currentEvent;
     while (_mainWindow.isOpen())
     {
-        switch (_gameState)
+        while (_mainWindow.pollEvent(currentEvent))
         {
-            case Game::Playing:
+            switch (_gameState)
             {
-                _mainWindow.clear(sf::Color(255,0,0));
-                _mainWindow.display();
-
-                if (currentEvent.type == sf::Event::Closed)
+                case Game::Playing:
                 {
-                    _gameState = Game::Exiting;
+                    _mainWindow.clear(sf::Color(255,0,0));
+                    _mainWindow.display();
+
+                    if (currentEvent.type == sf::Event::Closed)
+                    {
+                        _gameState = Game::Exiting;
+                    }
+                    break;
                 }
-                break;
             }
         }
     }
