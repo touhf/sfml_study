@@ -79,6 +79,25 @@ struct Paddle
     float bottom() { return y() + shape.getSize().y / 2.f; }
 };
 
+// generic function to check collision between two shapes
+template<class T1, class T2> bool isIntersecting(T1& mA, T2& mB)
+{
+    return mA.right() >= mB.left() && mA.left() <= mB.right()
+            && mA.bottom() >= mB.top() && mA.top() <= mB.bottom();
+}
+
+void checkCollision(Paddle& mPaddle, Ball& mBall)
+{
+    // if no intersection return
+    if (!isIntersecting(mPaddle, mBall)) return;
+
+    // otherwise push ball upwards
+    mBall.velocity.y = -ballVelocity;
+
+    if (mBall.x() < mPaddle.x()) mBall.velocity.x = -ballVelocity;
+    else mBall.velocity.x = ballVelocity;
+}
+
 int main()
 {
     RenderWindow window {{windowWidth, windowHeight}, "Arkanoid - 1"};
@@ -100,6 +119,8 @@ int main()
 
         ball.update();
         paddle.update();
+
+        checkCollision(paddle, ball);
 
         window.draw(ball.shape);
         window.draw(paddle.shape);
