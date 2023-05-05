@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "MainMenu.h"
 #include "SplashScreen.h"
+#include "PlayerPaddle.h"
 
 class Game
 {
@@ -21,4 +22,5 @@ private:
 
     static GameState _gameState;
     static sf::RenderWindow _mainWindow;
+    static PlayerPaddle _player1;
 };
