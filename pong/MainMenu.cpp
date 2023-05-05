@@ -94,12 +94,8 @@ MainMenu::MenuResult MainMenu::GetMenuResponse(sf::RenderWindow& window)
         {
             if (menuEvent.type == sf::Event::MouseButtonPressed)
             {
-                /*
-                return HandleClick(menuEvent.MouseButton.x, 
-                                    menuEvent.MouseButton.y);
-                */
-                return HandleClick(sf::Mouse::getPosition().x,
-                                sf::Mouse::getPosition().y);
+                return HandleClick(sf::Mouse::getPosition(window).x,
+                                sf::Mouse::getPosition(window).y);
             }
 
             if (menuEvent.type == sf::Event::Closed)

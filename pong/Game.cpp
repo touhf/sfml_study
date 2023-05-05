@@ -60,9 +60,14 @@ void Game::GameLoop()
                 }
 
                 case Game::ShowingSplash:
-                {
+                { 
                     ShowSplashScreen();
                     break;
+                }
+
+                case Game::Exiting:
+                {
+                    _mainWindow.close();
                 }
             }
         }

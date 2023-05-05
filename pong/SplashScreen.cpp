@@ -1,4 +1,5 @@
 #include "SplashScreen.h"
+#include <stdio.h>
 
 void SplashScreen::Show(sf::RenderWindow& renderWindow)
 {
