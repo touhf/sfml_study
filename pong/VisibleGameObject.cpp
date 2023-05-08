@@ -37,3 +37,32 @@ void VisibleGameObject::SetPosition(float x, float y)
         _sprite.setPosition(x, y);
     }
 }
+
+void VisibleGameObject::Update(float elapsedTime) { }
+
+void VisibleGameObject::SetPosition(float x, float y)
+{
+    if (_isLoaded)
+    {
+        _sprite.SetPosition();
+    }
+}
+
+sf::Vector2f VisibleGameObject::GetPosition() const
+{
+    if (_isLoaded)
+    {
+        return _sprite.GetPosition();
+    }
+    return sf::Vector2f();
+}
+
+sf::Sprite& VisibleGameObject::GetSprite()
+{
+    return _sprite;
+}
+
+bool VisibleGameObject::IsLoaded() const
+{
+    return _isLoaded;
+}
